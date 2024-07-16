@@ -9,9 +9,6 @@ concurrency:
   group: "publish"
 jobs:
   publish:
-    if: |
-      startsWith(github.event.head_commit.message, '*')
-
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git Checkout
