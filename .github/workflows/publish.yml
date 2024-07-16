@@ -1,10 +1,13 @@
 name: Publish to pub.dev
 
 on:
+  repository_dispatch:
+    types: [main_workflow_completed]
+
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 concurrency:
   group: "publish"
 jobs:

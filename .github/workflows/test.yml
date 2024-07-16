@@ -32,3 +32,11 @@ jobs:
       - name: 🧪 Run Test
         # TODO(manishmg3994): move to dart test when macro support is stable
         run: dart --enable-experiment=macros test test/singleton_macro_test.dart
+
+      - name: Trigger second workflow
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type":"main_workflow_completed"}'

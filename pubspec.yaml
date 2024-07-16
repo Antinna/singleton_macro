@@ -39,4 +39,4 @@ topics:
   - software-engineering
   - utilities
 
-publish_to: "https://pub.dev"
+publish_to: "https://pub.dev/singleton_macro"
