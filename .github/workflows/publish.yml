@@ -27,7 +27,10 @@ jobs:
       - name: Install dependencies
         run: dart pub get
 
+      - name: Prepare pub credentials
+        run: echo '${{ secrets.PUB_DEV_CREDENTIALS }}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
+
       - name: Publish to pub.dev
-        env:
-          PUB_DEV_CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
+        # env:
+        #   PUB_DEV_CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
         run: echo $PUB_DEV_CREDENTIALS | dart pub publish --force
