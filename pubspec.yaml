@@ -21,11 +21,11 @@ dev_dependencies:
 # Additional metadata
 
 screenshots:
+  # - description:
   - https://github.com/antinna/singleton_macro/screenshots/screenshot1.png
   - https://github.com/antinna/singleton_macro/screenshots/screenshot2.png
 funding:
-  - type: github
-    url: https://github.com/sponsors/Manishmg3994
+  - https://github.com/sponsors/Manishmg3994
 social:
   github: antinna
   youtube: https://www.youtube.com/@antinna
