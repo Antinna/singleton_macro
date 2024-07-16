@@ -28,7 +28,7 @@ macro class Singleton implements ClassDeclarationsMacro
      final defaultClassConstructor = await builder.constructorsOf(clazz);
     if (defaultClassConstructor.isNotEmpty) {
             builder.report(  Diagnostic( DiagnosticMessage(
-              '<= /\/* Remove This ${clazz.identifier.name}() constructor; *// A default factory singleton constructor was created with Macros  , Please Remove this constructor line having Name: ${clazz.identifier.name}',
+              '<= * Remove This ${clazz.identifier.name}() constructor; *, A default factory singleton constructor was created with Macros  , Please Remove this constructor line having Name: ${clazz.identifier.name}',
               target: defaultClassConstructor.first.asDiagnosticTarget,
             ),
             Severity.error,));
