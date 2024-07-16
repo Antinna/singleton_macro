@@ -1,0 +1,25 @@
+name: Publish to pub.dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ">=3.6.0-36.0.dev <4.0.0"
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Publish to pub.dev
+        env:
+          PUB_DEV_CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
+        run: echo $PUB_DEV_CREDENTIALS | dart pub publish --force

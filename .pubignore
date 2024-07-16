@@ -1,0 +1,25 @@
+# Ignore screenshots directory
+/screenshots/
+
+# Ignore example directory
+# /example/
+
+# Ignore test directory
+# /test/
+
+# Ignore .vscode settings
+/.vscode/
+
+/.idea/
+/*.iml
+
+# Ignore build output
+/build/
+
+# Ignore other common files
+/.dart_tool/
+/.packages
+/pubspec.lock
+
+/.github
+/run.bat
