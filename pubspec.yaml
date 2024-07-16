@@ -38,5 +38,4 @@ topics:
   - design-patterns
   - software-engineering
   - utilities
-
-publish_to: "https://pub.dev/singleton_macro"
+# publish_to: "https://pub.dev/singleton_macro"
