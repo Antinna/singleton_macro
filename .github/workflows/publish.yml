@@ -2,7 +2,7 @@ name: Publish to pub.dev
 
 on:
   repository_dispatch:
-    types: [main_workflow_completed]
+    types: [test_workflow_completed]
 
   workflow_dispatch:
   # push:
@@ -26,6 +26,21 @@ jobs:
         uses: dart-lang/setup-dart@v1
         with:
           sdk: dev
+
+      - name: Make bump_version.sh executable
+        run: chmod +x bump_version.sh
+
+      - name: Bump version
+        id: bump_version
+        run: ./bump_version.sh
+
+      - name: Commit version bump
+        run: |
+          git add pubspec.yaml README.md
+          git commit -m "chore: bump version to ${{ steps.bump_version.outputs.new_version }}"
+
+      - name: Push changes
+        run: git push origin main
 
       - name: Install dependencies
         run: dart pub get

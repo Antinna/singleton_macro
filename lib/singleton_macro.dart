@@ -28,21 +28,36 @@ macro class Singleton implements ClassDeclarationsMacro
      final defaultClassConstructor = await builder.constructorsOf(clazz);
     if (defaultClassConstructor.isNotEmpty) {
             builder.report(  Diagnostic( DiagnosticMessage(
-              '<= * Remove This ${clazz.identifier.name}() constructor; *, A default factory singleton constructor was created with Macros  , Please Remove this constructor line having Name: ${clazz.identifier.name}',
+              r'A default factory singleton constructor was created with `@Singleton()` Macro',
               target: defaultClassConstructor.first.asDiagnosticTarget,
             ),
-            Severity.error,));
+            Severity.error,
+       
+          correctionMessage:' * Remove This ${clazz.identifier.name}() constructor. *'));
+            
       
+    }
+    if(clazz.hasAbstract || clazz.hasSealed){
+  builder.report(  Diagnostic( DiagnosticMessage(
+              '<= Abstract classes can\'t be instantiated.Try creating an instance of a concrete subtype. or',
+              target: clazz.asDiagnosticTarget,
+            ),
+            Severity.error,
+            correctionMessage:"* Remove This ${(clazz.hasAbstract) ? "`abstract`" :"`sealed`"} keyword *"
+            ));
     }
 
     builder.declareInType(DeclarationCode.fromParts([
       "  static ",
-      "final ",
-    "${clazz.identifier.name} ",
-    "_singleton = ",
-    "${clazz.identifier.name}._internal();\n",
-    "  factory ${clazz.identifier.name}() => _singleton;\n",
-    "${clazz.identifier.name}._internal();"
+     
+    "${clazz.identifier.name}? ",
+    "_singleton;",
+    "\n",
+    "  factory ${clazz.identifier.name}()",
+    " {\n    if (_singleton == null) ",
+    "{ \n      _singleton = ${clazz.identifier.name}._();",
+    " \n    } \n    return _singleton!; \n  } \n\n  ",
+    "${clazz.identifier.name}._();"
     ]));
   }
   

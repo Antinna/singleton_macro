@@ -12,8 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'antinna' || github.repository_owner == 'manishmg3994' || github.repository_owner == 'mg3994' }}
     name: ⚙️ Test
-
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
@@ -39,4 +39,4 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/${{ github.repository }}/dispatches \
-            -d '{"event_type":"main_workflow_completed"}'
+            -d '{"event_type":"test_workflow_completed"}'

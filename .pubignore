@@ -22,4 +22,6 @@
 /pubspec.lock
 
 /.github
+/bump_version.sh
+/.cliff.toml
 /run.bat

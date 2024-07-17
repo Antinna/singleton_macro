@@ -1,0 +1,18 @@
+[changelog]
+path = "CHANGELOG.md"
+version_prefix = "##"
+template = """
+## {version}
+
+{entries}
+"""
+
+[labels]
+feat = "### Added"
+fix = "### Fixed"
+docs = "### Documentation"
+style = "### Code Style"
+refactor = "### Refactored"
+perf = "### Performance"
+test = "### Tests"
+chore = "### Chores"
