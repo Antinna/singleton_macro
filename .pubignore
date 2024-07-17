@@ -23,6 +23,6 @@
 
 /.github
 /bump_version.sh
-/.cliff.toml
+/cliff.toml
 /screenshots/screenshot3_depricated_oldversion_0.0.1-dev.1.png
 /run.bat
