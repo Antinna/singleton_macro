@@ -2,7 +2,7 @@ name: Publish to pub.dev
 
 on:
   repository_dispatch:
-    types: [test_workflow_completed]
+    types: [master_workflow_completed]
 
   workflow_dispatch:
   # push:
@@ -21,6 +21,10 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+      - name: Determine branch name
+        id: determine_branch
+        run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1
@@ -42,6 +46,7 @@ jobs:
           args: -vv --latest --no-exec --github-repo ${{ github.repository }}
         env:
           OUTPUT: CHANGES.md
+
       - name: Commit version bump
         run: |
           git add pubspec.yaml README.md
@@ -63,4 +68,4 @@ jobs:
         run: echo $PUB_DEV_CREDENTIALS | dart pub publish --force
 
       - name: Push changes
-        run: git push origin main
+        run: git push origin ${{ steps.determine_branch.outputs.branch }}

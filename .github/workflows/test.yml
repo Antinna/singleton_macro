@@ -39,4 +39,4 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/${{ github.repository }}/dispatches \
-            -d '{"event_type":"test_workflow_completed"}'
+            -d '{"event_type":"master_workflow_completed"}'
