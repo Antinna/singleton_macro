@@ -39,7 +39,7 @@ topics:
   - singleton
   - design-patterns
   - utilities
-publish_to: https://pub.dev
+# publish_to: https://pub.dev
 # scripts:
 #   # rps test
 #   test: "flutter pub publish --dry-run"
