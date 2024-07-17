@@ -34,13 +34,18 @@ jobs:
         id: bump_version
         run: ./bump_version.sh
 
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@main
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: -vv --latest --no-exec --github-repo ${{ github.repository }}
+        env:
+          OUTPUT: CHANGES.md
       - name: Commit version bump
         run: |
           git add pubspec.yaml README.md
           git commit -m "chore: bump version to ${{ steps.bump_version.outputs.new_version }}"
-
-      - name: Push changes
-        run: git push origin main
 
       - name: Install dependencies
         run: dart pub get
@@ -56,3 +61,6 @@ jobs:
         # env:
         #   PUB_DEV_CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
         run: echo $PUB_DEV_CREDENTIALS | dart pub publish --force
+
+      - name: Push changes
+        run: git push origin main

@@ -1,5 +1,5 @@
 # Ignore screenshots directory
-/screenshots/
+# /screenshots/
 
 # Ignore example directory
 # /example/
@@ -24,4 +24,5 @@
 /.github
 /bump_version.sh
 /.cliff.toml
+/screenshots/screenshot3_depricated_oldversion_0.0.1-dev.1.png
 /run.bat
