@@ -22,7 +22,6 @@ dev_dependencies:
 # Additional metadata
 
 screenshots:
-
   - description: Example output of the Singleton macro applied to a class.
     path: screenshots/screenshot1.png
   - description: Demonstration of the Singleton macro in use.

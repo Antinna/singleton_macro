@@ -9,6 +9,7 @@ on:
   push:
     branches-ignore:
       - "**" # Ignore all branches by default
+  workflow_dispatch:
 
 jobs:
   build:
@@ -39,7 +40,7 @@ jobs:
         run: dart --enable-experiment=macros test test/singleton_macro_test.dart
 
       - name: Check Branch and Trigger Workflow
-        if: ${{ github.event_name == 'push' }}
+        # if: ${{ github.event_name == 'push' }}
         run: |
           BRANCH="${{ github.event.ref }}"
           if [[ "${BRANCH}" =~ ^refs/heads/ ]]; then
