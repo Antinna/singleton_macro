@@ -7,7 +7,8 @@ concurrency:
 on:
   pull_request:
   push:
-    branches: [main, master]
+    branches-ignore:
+      - "**" # Ignore all branches by default
 
 jobs:
   build:
@@ -17,6 +18,10 @@ jobs:
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
+
+      - name: Determine Branch Name
+        id: determine_branch
+        run: echo "::set-output name=branch::$(git rev-parse --abbrev-ref HEAD)"
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1
@@ -33,10 +38,17 @@ jobs:
         # TODO(manishmg3994): move to dart test when macro support is stable
         run: dart --enable-experiment=macros test test/singleton_macro_test.dart
 
-      - name: Trigger second workflow
+      - name: Check Branch and Trigger Workflow
+        if: ${{ github.event_name == 'push' }}
         run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/dispatches \
-            -d '{"event_type":"master_workflow_completed"}'
+          BRANCH="${{ github.event.ref }}"
+          if [[ "${BRANCH}" =~ ^refs/heads/ ]]; then
+            BRANCH="${BRANCH#refs/heads/}"
+          fi
+          if [[ "${BRANCH}" =~ ^(main|master)$ || "${BRANCH}" =~ ^dev.*$ ]]; then
+            curl -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              https://api.github.com/repos/${{ github.repository }}/dispatches \
+              -d "{\"event_type\":\"${BRANCH}_workflow_completed\"}"
+          fi
