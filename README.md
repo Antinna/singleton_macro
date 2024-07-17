@@ -14,7 +14,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  singleton_macro: ^0.0.1-dev.2
+  singleton_macro: ^0.0.2-dev.2
 ```
 
 ## Usage
