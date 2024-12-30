@@ -1,0 +1,7 @@
+/.vscode/
+/.idea/
+
+# Ignore other common files
+/.dart_tool/
+/pubspec.lock
+/.gitignore

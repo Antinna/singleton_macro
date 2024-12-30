@@ -1,0 +1,43 @@
+name: singleton_macro
+description: A Dart package that provides a `Singleton` macro to transform classes into singletons automatically.
+version: 0.0.3-dev.1
+repository: https://github.com/Antinna/singleton_macro
+homepage: https://www.takeitall.news/2024/12/singleton-macro-pub-dev.html
+issue_tracker: https://github.com/antinna/singleton_macro/issues
+documentation: https://www.takeitall.news/2024/12/singleton-macro-pub-dev.html
+license: MIT
+
+environment:
+  sdk: ^3.6.0
+
+
+dependencies:
+  _macros:
+    sdk: dart
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.24.0
+
+
+
+# Additional metadata
+
+screenshots:
+  - description: Example output of the Singleton macro applied to a class.
+    path: screenshots/screenshot1.png
+  - description: Demonstration of the Singleton macro in use.
+    path: screenshots/screenshot2.png
+funding:
+  - https://github.com/sponsors/Manishmg3994
+social:
+  github: antinna
+  youtube: https://www.youtube.com/@antinna
+
+# Additional tags to help with discovery
+topics:
+  - dart
+  - macros
+  - singleton
+  - design-patterns
+  - utilities
